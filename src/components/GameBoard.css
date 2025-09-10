@@ -1,0 +1,150 @@
+.game-board {
+  display: grid;
+  gap: 1px; /* Reduced gap for larger grid */
+  background-color: #333;
+  padding: 8px; /* Reduced padding */
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 600px; /* Increased max-width for 25x25 grid */
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.game-board.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  min-height: 300px;
+}
+
+.game-board.changing {
+  animation: mazeChange 0.3s ease-in-out;
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem; /* Much smaller font for 25x25 grid */
+  border-radius: 2px; /* Smaller border radius */
+  transition: all 0.2s ease;
+  position: relative;
+  min-width: 16px; /* Ensure minimum size for visibility */
+  min-height: 16px;
+}
+
+.cell-wall {
+  background-color: #2c3e50;
+  border: 1px solid #34495e;
+}
+
+.cell-path {
+  background-color: #ecf0f1;
+  border: 1px solid #bdc3c7;
+}
+
+.cell-start {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  border: 1px solid #229954;
+  animation: pulse-start 2s infinite;
+}
+
+.cell-end {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border: 1px solid #a93226;
+  animation: pulse-end 2s infinite;
+}
+
+.cell-player {
+  background: linear-gradient(135deg, #3498db, #2980b9) !important;
+  border: 2px solid #1f4e79 !important;
+  animation: pulse-player 1s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse-start {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(46, 204, 113, 0);
+  }
+}
+
+@keyframes pulse-end {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(231, 76, 60, 0);
+  }
+}
+
+@keyframes pulse-player {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0);
+  }
+}
+
+@keyframes mazeChange {
+  0% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.02);
+    filter: brightness(1.5) saturate(1.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+  100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 800px) {
+  .game-board {
+    max-width: 500px;
+  }
+  
+  .cell {
+    font-size: 0.5rem;
+    min-width: 12px;
+    min-height: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-board {
+    max-width: 400px;
+  }
+  
+  .cell {
+    font-size: 0.4rem;
+    min-width: 10px;
+    min-height: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .game-board {
+    max-width: 350px;
+  }
+  
+  .cell {
+    font-size: 0.35rem;
+    min-width: 8px;
+    min-height: 8px;
+  }
+}

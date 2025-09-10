@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+  color: white;
+}
+
+.App-header {
+  margin-bottom: 1rem;
+}
+
+.App-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.App-header p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
