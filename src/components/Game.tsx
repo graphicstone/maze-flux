@@ -14,8 +14,6 @@ const defaultConfig: GameConfig = {
 
 // Countdown scoring system - you start with 100 and lose points over time
 const STARTING_SCORE = 100;
-const POINTS_LOST_PER_SECOND = 2; // Lose 2 points every second
-
 const Game: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>({
     maze: [],
@@ -27,7 +25,7 @@ const Game: React.FC = () => {
   });
 
   const [isChanging, setIsChanging] = useState(false);
-  const [tickCounter, setTickCounter] = useState(0);
+  const [, setTickCounter] = useState(0); // Used in timer effect for score calculation
   const [intervalTime, setIntervalTime] = useState(5); // User-configurable interval
   const [isPlaying, setIsPlaying] = useState(false); // Game play/pause state
 
@@ -76,17 +74,6 @@ const Game: React.FC = () => {
       score: STARTING_SCORE // Reset to 100 points
     }));
   }, [mazeGenerator, intervalTime]);
-
-  const generateNewMaze = useCallback(() => {
-    if (gameState.isGameWon || gameState.isGameLost) return;
-
-    const maze = mazeGenerator.generateMaze();
-    setGameState(prevState => ({
-      ...prevState,
-      maze,
-      timeLeft: defaultConfig.intervalTime
-    }));
-  }, [mazeGenerator, gameState.isGameWon, gameState.isGameLost]);
 
   const movePlayer = useCallback((direction: 'up' | 'down' | 'left' | 'right') => {
     if (gameState.isGameWon || gameState.isGameLost || !isPlaying) return; // Only allow movement when game is playing
