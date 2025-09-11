@@ -34,13 +34,6 @@ const GameInfo: React.FC<GameInfoProps> = ({
     return Math.max(0, (timeLeft / intervalTime) * 100);
   };
 
-  const getTimeBarColor = () => {
-    const percentage = getTimeBarWidth();
-    if (percentage > 60) return '#2ecc71'; // Green
-    if (percentage > 30) return '#f39c12'; // Orange
-    return '#e74c3c'; // Red
-  };
-
   return (
     <div className="game-info">
       <div className="info-row">
