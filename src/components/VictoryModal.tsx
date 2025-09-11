@@ -64,7 +64,7 @@ const VictoryModal: React.FC<VictoryModalProps> = ({
           className="restart-btn"
           onClick={onRestart}
         >
-          🎮 Play Again
+          🏎️ Play Again
         </button>
       </div>
     </div>

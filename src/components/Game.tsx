@@ -116,6 +116,11 @@ const Game: React.FC = () => {
   // Handle keyboard input
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
+      // Prevent default behavior for game control keys
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 's', 'S', 'a', 'A', 'd', 'D'].includes(event.key)) {
+        event.preventDefault();
+      }
+
       switch (event.key) {
         case 'ArrowUp':
         case 'w':
@@ -201,30 +206,33 @@ const Game: React.FC = () => {
 
   return (
     <div className="game-container">
-      <GameInfo 
-        timeLeft={gameState.timeLeft}
-        score={gameState.score}
-        isGameWon={gameState.isGameWon}
-        isGameLost={gameState.isGameLost}
-        onRestart={initializeGame}
-        intervalTime={intervalTime}
-        onIncreaseInterval={increaseInterval}
-        onDecreaseInterval={decreaseInterval}
-        isPlaying={isPlaying}
-        onTogglePlay={togglePlay}
-      />
+      <div className="game-sidebar">
+        <GameInfo 
+          timeLeft={gameState.timeLeft}
+          score={gameState.score}
+          isGameWon={gameState.isGameWon}
+          isGameLost={gameState.isGameLost}
+          onRestart={initializeGame}
+          intervalTime={intervalTime}
+          onIncreaseInterval={increaseInterval}
+          onDecreaseInterval={decreaseInterval}
+          isPlaying={isPlaying}
+          onTogglePlay={togglePlay}
+        />
+        <div className="game-controls">
+          <p>Use WASD or arrow keys to move</p>
+          {(gameState.isGameWon || gameState.isGameLost) && (
+            <p>Press R to restart</p>
+          )}
+        </div>
+      </div>
+      
       <GameBoard 
         maze={gameState.maze}
         playerPosition={gameState.playerPosition}
         gridSize={defaultConfig.gridSize}
         isChanging={isChanging}
       />
-      <div className="game-controls">
-        <p>Use WASD or arrow keys to move</p>
-        {(gameState.isGameWon || gameState.isGameLost) && (
-          <p>Press R to restart</p>
-        )}
-      </div>
       
       <VictoryModal 
         isVisible={gameState.isGameWon}

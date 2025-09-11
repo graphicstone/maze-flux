@@ -58,6 +58,14 @@ const GameInfo: React.FC<GameInfoProps> = ({
       </div>
       
       <div className="compact-controls">
+        <div className="timer-bar-container">
+          <div 
+            className="timer-bar"
+            style={{ 
+              width: `${getTimeBarWidth()}%`
+            }}
+          />
+        </div>
         <button 
           className={`play-pause-btn ${isPlaying ? 'playing' : 'paused'}`}
           onClick={onTogglePlay}
@@ -90,16 +98,6 @@ const GameInfo: React.FC<GameInfoProps> = ({
         </div>
       </div>
       
-      <div className="timer-bar-container">
-        <div 
-          className="timer-bar"
-          style={{ 
-            width: `${getTimeBarWidth()}%`,
-            backgroundColor: getTimeBarColor()
-          }}
-        />
-      </div>
-
       {isGameLost && (
         <div className="game-status game-lost">
           <h2>💀 Game Over 💀</h2>

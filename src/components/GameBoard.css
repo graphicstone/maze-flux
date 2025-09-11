@@ -1,15 +1,15 @@
 .game-board {
   display: grid;
-  gap: 1px; /* Reduced gap for larger grid */
+  gap: 1px;
   background-color: #333;
-  padding: 8px; /* Reduced padding */
+  padding: 8px;
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 600px; /* Increased max-width for 25x25 grid */
   width: 100%;
   aspect-ratio: 1;
+  max-height: calc(100vh - 2rem);
 }
 
 .game-board.loading {

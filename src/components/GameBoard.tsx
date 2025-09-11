@@ -32,7 +32,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ maze, playerPosition, gridSize, i
   };
 
   const getCellContent = (cell: Cell, isPlayerHere: boolean) => {
-    if (isPlayerHere) return '🎮';
+    if (isPlayerHere) return '🏎️';
     
     switch (cell.type) {
       case CellType.START:
